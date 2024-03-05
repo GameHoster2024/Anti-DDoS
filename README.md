@@ -37,14 +37,14 @@ iptables -t mangle -A PREROUTING -f -j DROP
 
 iptables -A INPUT -p tcp --syn -m connlimit --connlimit-above 80 -j DROP
 
-# Prevent UDP flood.
+## Prevent UDP flood.
 
 iptables -A INPUT -p udp -m limit --limit 150/s -j ACCEPT
 iptables -A INPUT -p udp -j DROP
 
-# To prevent DNS impersonation attacks (DNS spoofing), you can create specific IPTables rules to protect DNS traffic.
+## To prevent DNS impersonation attacks (DNS spoofing), you can create specific IPTables rules to protect DNS traffic.
 
 iptables -A INPUT -p udp --sport 53 -m conntrack --ctstate ESTABLISHED -j ACCEPT<br>
 iptables -A INPUT -p udp --sport 53 -j DROP
 
-# Don't forget to open important ports via iptables such as: 22, 80, 443
+
