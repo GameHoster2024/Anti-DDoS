@@ -21,13 +21,13 @@ iptables -t mangle -A PREROUTING -p tcp -m conntrack --ctstate NEW -m tcpmss ! -
 ## The next set of rules blocks packets that use fake TCP flags, i.e. H. TCP flags that legitimate packets would not use.
 ###
 ```
-iptables -t mangle -A PREROUTING -p tcp --tcp-flags FIN,SYN FIN,SYN -j DROP<br>
-iptables -t mangle -A PREROUTING -p tcp --tcp-flags SYN,RST SYN,RST -j DROP<br>
-iptables -t mangle -A PREROUTING -p tcp --tcp-flags FIN,RST FIN,RST -j DROP<br>
-iptables -t mangle -A PREROUTING -p tcp --tcp-flags FIN,ACK FIN -j DROP<br>
-iptables -t mangle -A PREROUTING -p tcp --tcp-flags ACK,URG URG -j DROP<br>
-iptables -t mangle -A PREROUTING -p tcp --tcp-flags ACK,PSH PSH -j DROP<br>
-iptables -t mangle -A PREROUTING -p tcp --tcp-flags ALL NONE -j DROP<br>
+iptables -t mangle -A PREROUTING -p tcp --tcp-flags FIN,SYN FIN,SYN -j DROP
+iptables -t mangle -A PREROUTING -p tcp --tcp-flags SYN,RST SYN,RST -j DROP
+iptables -t mangle -A PREROUTING -p tcp --tcp-flags FIN,RST FIN,RST -j DROP
+iptables -t mangle -A PREROUTING -p tcp --tcp-flags FIN,ACK FIN -j DROP
+iptables -t mangle -A PREROUTING -p tcp --tcp-flags ACK,URG URG -j DROP
+iptables -t mangle -A PREROUTING -p tcp --tcp-flags ACK,PSH PSH -j DROP
+iptables -t mangle -A PREROUTING -p tcp --tcp-flags ALL NONE -j DROP
 ```
 ###
 
@@ -46,7 +46,7 @@ iptables -A INPUT -p udp -j DROP
 ```
 ## To prevent DNS impersonation attacks (DNS spoofing), you can create specific IPTables rules to protect DNS traffic.
 ```
-iptables -A INPUT -p udp --sport 53 -m conntrack --ctstate ESTABLISHED -j ACCEPT<br>
+iptables -A INPUT -p udp --sport 53 -m conntrack --ctstate ESTABLISHED -j ACCEPT
 iptables -A INPUT -p udp --sport 53 -j DROP
 ```
 
