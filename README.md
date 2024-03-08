@@ -7,7 +7,7 @@ IPTables/NFTables DDoS Protection Rules for Linux Servers
 ## This means that all invalid packets are discarded immediately before they are further processed by the system.
 ```
 iptables -t mangle -A PREROUTING --ctstate INVALID -m conntrack -j DROP
-or<br />
+or this:
 iptables -t mangle -A PREROUTING -m conntrack --ctstate INVALID -j DROP
 ```
 ## This rule drops all packets that are not “Syn” in the TCP stack.
